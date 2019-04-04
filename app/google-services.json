@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "595846459578",
+    "firebase_url": "https://canakkale-gezi-rehberi.firebaseio.com",
+    "project_id": "canakkale-gezi-rehberi",
+    "storage_bucket": "canakkale-gezi-rehberi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:595846459578:android:07c4ddbbd434b5cd",
+        "android_client_info": {
+          "package_name": "com.hexadecimal.canakkalegezirehberi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "595846459578-vak0s0h0she9vjetbunv858mrot0p023.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hexadecimal.canakkalegezirehberi",
+            "certificate_hash": "e92b6a4fd88f3ce65506225755156b0eb60da8e2"
+          }
+        },
+        {
+          "client_id": "595846459578-dpbgo62qtkuv9src3v0pou440e9u0em3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATueChSWnep7sDIsFKewS3kQohUpVoDis"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "595846459578-dpbgo62qtkuv9src3v0pou440e9u0em3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

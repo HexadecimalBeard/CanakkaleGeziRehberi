@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Çanakkale Gezi Rehberi</string>
+    <string name="login_button">Login</string>
+    <string name="sign_in_button">Sign In</string>
+    <string name="dont_have_account_textview">Don\'t have an account?</string>
+    <string name="sign_up_login_activity">Sign up!</string>
+    <string name="login_email_hint">Email</string>
+    <string name="login_password_hint">Şifre</string>
+    <string name="signup_activity_signup">Kayıt Ol</string>
+    <string name="girisyap_activity_login">Giriş Yap</string>
+    <string name="sifrenimiunuttun_activity_login">Şifreni mi unuttun?</string>
+    <string name="hesabinYokMu_activity_login">Hesabın yok mu?</string>
+    <string name="kayitOl_activity_login">Kayıt ol!</string>
+    <string name="yada_activity_login">ya da</string>
+    <string name="girisYap_activity_signup">Giriş yap!</string>
+    <string name="hesabinVarmi_activity_signup">Bir hesabın var mı?</string>
+    <string name="username_activity_signup">İsim</string>
+</resources>
