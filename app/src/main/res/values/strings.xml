@@ -1,9 +1,5 @@
 <resources>
     <string name="app_name">Çanakkale Gezi Rehberi</string>
-    <string name="login_button">Login</string>
-    <string name="sign_in_button">Sign In</string>
-    <string name="dont_have_account_textview">Don\'t have an account?</string>
-    <string name="sign_up_login_activity">Sign up!</string>
     <string name="login_email_hint">Email</string>
     <string name="login_password_hint">Şifre</string>
     <string name="signup_activity_signup">Kayıt Ol</string>
@@ -15,4 +11,12 @@
     <string name="girisYap_activity_signup">Giriş yap!</string>
     <string name="hesabinVarmi_activity_signup">Bir hesabın var mı?</string>
     <string name="username_activity_signup">İsim</string>
+    <string name="onboarding_slide_1_title">Giriş yap ya da kaydol</string>
+    <string name="onboarding_slide_1_desc">Kullanıcı girişi yaparak \n kendi oluşturduğun rotalara erişebilirsin.</string>
+    <string name="onboarding_slide_2_title">Rotalarım</string>
+    <string name="onboarding_slide_2_desc">Rotalarım kısmından satın aldığın \n anıtlarla kendine özel rotalarını \n oluşturabilirsin.</string>
+    <string name="onboarding_slide_3_title">Çanakkale Zaferi</string>
+    <string name="onboarding_slide_3_desc">Savaş hakkında kısmından \n tarihi zafer hakkında yeni bilgiler \n öğrenebilirsin.</string>
+    <string name="onboarding_Atla_Text">Atla</string>
+    <string name="onboarding_Sonraki_Text">Sonraki</string>
 </resources>

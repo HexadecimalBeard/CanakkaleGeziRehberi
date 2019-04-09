@@ -1,5 +1,6 @@
 package com.hexadecimal.canakkalegezirehberi
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,9 +10,28 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
+
+    private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        // to show onboarding screen for once
+        val isFirstRun = getSharedPreferences("PREFERENCE", Context.MODE_PRIVATE)
+                .getBoolean("isFirstRun", true)
+
+        if (isFirstRun) {
+            //show start activity
+            val intent = Intent(this,OnboardingActivity::class.java)
+            startActivity(intent)
+        }
+        getSharedPreferences("PREFERENCE", Context.MODE_PRIVATE).edit()
+                .putBoolean("isFirstRun", false).apply()
+        // to show onboarding screen for once
+
+        auth = FirebaseAuth.getInstance()
+
 
         kayitOlTxt_activity_login.setOnClickListener {
             val intent = Intent(this,SignUpActivity::class.java)
@@ -21,6 +41,19 @@ class LoginActivity : AppCompatActivity() {
         loginButton_activity_login.setOnClickListener {
             performSignIn()
         }
+    }
+
+    public override fun onStart() {
+        super.onStart()
+        val user = FirebaseAuth.getInstance().currentUser
+        if (user != null) {
+            // User is signed in
+            val intent = Intent (this,MyRoutesActivity::class.java)
+            startActivity(intent)
+        } else {
+            // No user is signed in
+        }
+        // [END check_current_user]
     }
 
     private fun performSignIn() {
