@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.hexadecimal.canakkalegezirehberi.R;
 
 import androidx.annotation.NonNull;
@@ -17,7 +18,7 @@ public class SliderAdapter extends PagerAdapter {
     Context context;
     LayoutInflater layoutInflater;
 
-    public SliderAdapter(Context context){
+    public SliderAdapter(Context context) {
         this.context = context;
 
     }
@@ -58,11 +59,11 @@ public class SliderAdapter extends PagerAdapter {
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
 
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = layoutInflater.inflate(R.layout.onboarding_slide1_layout, container,false);
+        View view = layoutInflater.inflate(R.layout.onboarding_slide1_layout, container, false);
 
         ImageView slideImageView = (ImageView) view.findViewById(R.id.sliderImg_onboarding);
         TextView slideHeading = (TextView) view.findViewById(R.id.sliderHeading_onboarding);
-        TextView slideDescription= (TextView) view.findViewById(R.id.sliderDesc_onboarding);
+        TextView slideDescription = (TextView) view.findViewById(R.id.sliderDesc_onboarding);
 
         slideImageView.setImageResource(slide_images[position]);
         slideHeading.setText(slide_headings[position]);
@@ -77,6 +78,6 @@ public class SliderAdapter extends PagerAdapter {
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
 
-        container.removeView((ConstraintLayout)object);
+        container.removeView((ConstraintLayout) object);
     }
 }

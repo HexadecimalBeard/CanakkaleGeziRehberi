@@ -17,34 +17,37 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(R.layout.activity_signup)
 
         girisyapTxt_activity_signup.setOnClickListener {
-            val intent = Intent (this,LoginActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
 
+        // call to performRegister method to sign up user with given email and password
         registerButton_activity_signup.setOnClickListener {
             performRegister()
         }
     }
+
 
     private fun performRegister() {
         val email = emailEdtText_activity_signup.text.toString()
         val password = passEdtText_activity_signup.text.toString()
 
         if (email.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Lütfen email ve parola kısmını doldurunuz!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Lütfen email ve parola kısmını doldurunuz!", Toast.LENGTH_SHORT)
+                .show()
             return
         }
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener {
-                    if (!it.isSuccessful) return@addOnCompleteListener
+            .addOnCompleteListener {
+                if (!it.isSuccessful) return@addOnCompleteListener
 
-                    // TODO eger kullanici giris yaparsa MyRoutesActivity sinifina gecis yap
-                    val intent = Intent(this, MyRoutesActivity::class.java)
-                    startActivity(intent)
-                }
-                .addOnFailureListener {
-                    Toast.makeText(this, "Lütfen geçerli bir email adresi giriniz!", Toast.LENGTH_LONG).show()
-                }
+                val intent = Intent(this, FragmentBaseActivity::class.java)
+                startActivity(intent)
+            }
+            .addOnFailureListener {
+                Toast.makeText(this, "Lütfen geçerli bir email adresi giriniz!", Toast.LENGTH_LONG)
+                    .show()
+            }
     }
 
 }

@@ -19,25 +19,27 @@ class LoginActivity : AppCompatActivity() {
 
         // to show onboarding screen for once
         val isFirstRun = getSharedPreferences("PREFERENCE", Context.MODE_PRIVATE)
-                .getBoolean("isFirstRun", true)
+            .getBoolean("isFirstRun", true)
 
         if (isFirstRun) {
-            //show start activity
-            val intent = Intent(this,OnboardingActivity::class.java)
+            // show onboarding screen
+            val intent = Intent(this, OnboardingActivity::class.java)
             startActivity(intent)
         }
+        // we used shared preferences here, when the user saw the onboarding screen
+        // boolean variable will change as false and user will never see the onboarding screen again
         getSharedPreferences("PREFERENCE", Context.MODE_PRIVATE).edit()
-                .putBoolean("isFirstRun", false).apply()
+            .putBoolean("isFirstRun", false).apply()
         // to show onboarding screen for once
 
         auth = FirebaseAuth.getInstance()
 
-
+        // passage to the Register Page
         kayitOlTxt_activity_login.setOnClickListener {
-            val intent = Intent(this,SignUpActivity::class.java)
+            val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
-
+        // when user entered the account details, we call performSignIn method to login
         loginButton_activity_login.setOnClickListener {
             performSignIn()
         }
@@ -45,13 +47,15 @@ class LoginActivity : AppCompatActivity() {
 
     public override fun onStart() {
         super.onStart()
+        // if user already signed in, go directly to the My Routes Page
         val user = FirebaseAuth.getInstance().currentUser
         if (user != null) {
             // User is signed in
-            val intent = Intent (this,MyRoutesActivity::class.java)
+            val intent = Intent(this, FragmentBaseActivity::class.java)
             startActivity(intent)
         } else {
             // No user is signed in
+            // TODO kullanici giris yapmadiysa ne olacak, burayı düzenle!
         }
         // [END check_current_user]
     }
@@ -60,23 +64,25 @@ class LoginActivity : AppCompatActivity() {
         val email = emailEdtText_activity_login.text.toString()
         val password = passEdtText_activity_login.text.toString()
 
+        // if the email and password section is empty show a warning
         if (email.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Lütfen email ve parola kısmını doldurunuz!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Lütfen email ve parola kısmını doldurunuz!", Toast.LENGTH_SHORT)
+                .show()
             return
         }
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener {
-                    if (!it.isSuccessful) return@addOnCompleteListener
+            .addOnCompleteListener {
+                if (!it.isSuccessful) return@addOnCompleteListener
 
-                    val intent = Intent(this, MyRoutesActivity::class.java)
-                    startActivity(intent)
-                }
-                .addOnFailureListener {
-                    Toast.makeText(
-                            this,
-                            "Giriş yaparken bir sorun yaşandı. Bilgilerinizi kontrol ediniz!",
-                            Toast.LENGTH_LONG
-                    ).show()
-                }
+                val intent = Intent(this, FragmentBaseActivity::class.java)
+                startActivity(intent)
+            }
+            .addOnFailureListener {
+                Toast.makeText(
+                    this,
+                    "Giriş yaparken bir sorun yaşandı. Bilgilerinizi kontrol ediniz!",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
     }
 }

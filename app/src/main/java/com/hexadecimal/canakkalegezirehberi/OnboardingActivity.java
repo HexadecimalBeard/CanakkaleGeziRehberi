@@ -64,6 +64,7 @@ public class OnboardingActivity extends AppCompatActivity {
 
     }
 
+    // to show dots in onboarding screen
     public void addDotsIndicator(int position) {
         mDots = new TextView[3];
         mDotLayout.removeAllViews();
@@ -90,7 +91,7 @@ public class OnboardingActivity extends AppCompatActivity {
 
         @Override
         public void onPageSelected(int position) {
-
+            // according to selected page, we are changing the texts
             addDotsIndicator(position);
             mCurrentPage = position;
 
@@ -104,7 +105,7 @@ public class OnboardingActivity extends AppCompatActivity {
                 sonrakiBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(intent);
                     }
                 });
@@ -116,9 +117,6 @@ public class OnboardingActivity extends AppCompatActivity {
 
         @Override
         public void onPageScrollStateChanged(int state) {
-
         }
     };
-
-
 }

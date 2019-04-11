@@ -19,4 +19,7 @@
     <string name="onboarding_slide_3_desc">Savaş hakkında kısmından \n tarihi zafer hakkında yeni bilgiler \n öğrenebilirsin.</string>
     <string name="onboarding_Atla_Text">Atla</string>
     <string name="onboarding_Sonraki_Text">Sonraki</string>
+    <string name="yeniRotaOlustur_activityMyroutes">Yeni Rota Oluştur</string>
+    <string name="createNewRoute_DescText">Sahip olduğun anıtları aşağıdan ekleyebilirsin. Daha \n fazlası için Anıtlar kısmını ziyaret et.</string>
+    <string name="yeniRotaOlustur_fragment_newRoute">Yeni Rota Oluştur</string>
 </resources>
