@@ -1,4 +1,4 @@
-package com.hexadecimal.canakkalegezirehberi
+package com.hexadecimal.canakkalegezirehberi.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import com.hexadecimal.canakkalegezirehberi.R
 import kotlinx.android.synthetic.main.fragment_my_routes.*
 import java.util.*
 import kotlin.concurrent.schedule
@@ -16,6 +18,8 @@ import kotlin.concurrent.schedule
 // 11.04.2019 - 16:11
 
 class FragmentMyRoutes : Fragment() {
+
+    private val createNewRouteFragment by lazy { CreateNewRouteFragment.newInstance() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,8 +39,8 @@ class FragmentMyRoutes : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         yeniRotaOlustur_fragment_myroutes.setOnClickListener {
-            val newRouteFragment = CreateNewRouteFragment.newInstance()
-            openFragment(newRouteFragment)
+            fragmentManager!!.beginTransaction()
+                .replace(R.id.fragment_container, createNewRouteFragment).commit()
         }
 
         searchView_fragment_myroutes.setOnClickListener {

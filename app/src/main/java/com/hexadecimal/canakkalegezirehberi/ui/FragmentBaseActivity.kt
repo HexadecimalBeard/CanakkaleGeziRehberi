@@ -1,4 +1,4 @@
-package com.hexadecimal.canakkalegezirehberi
+package com.hexadecimal.canakkalegezirehberi.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,8 +7,13 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.hexadecimal.canakkalegezirehberi.R
 
 class FragmentBaseActivity : AppCompatActivity() {
+
+    private val myRoutesFragment by lazy { FragmentMyRoutes.newInstance() }
+    private val fragmentMonuments by lazy { FragmentMonuments.newInstance() }
+    private val routeDetailsFragment by lazy { RouteDetailsFragment.newInstance() }
 
     var fbAuth = FirebaseAuth.getInstance()
 
@@ -17,7 +22,8 @@ class FragmentBaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_base_main)
 
-        val newRouteFragment = FragmentMyRoutes.newInstance()
+        val newRouteFragment =
+            FragmentMyRoutes.newInstance()
         openFragment(newRouteFragment)
 
         // declared the bottom navigation bar
@@ -33,24 +39,32 @@ class FragmentBaseActivity : AppCompatActivity() {
             when (item.itemId) {
 
                 R.id.bottomnav_Myroutes -> {
-                    val myRoutesFragment = FragmentMyRoutes.newInstance()
-                    openFragment(myRoutesFragment)
+
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, myRoutesFragment).commit()
 
                     return@OnNavigationItemSelectedListener true
                 }
 
                 R.id.bottomnav_AboutVictory -> {
+
+                    // supportFragmentManager.beginTransaction()
+                    //     .replace(R.id.fragment_container, aboutVictory).commit()
                     return@OnNavigationItemSelectedListener true
                 }
 
                 R.id.bottomnav_Monuments -> {
-                    val monumentsFragment = FragmentMonuments.newInstance()
-                    openFragment(monumentsFragment)
+
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, fragmentMonuments).commit()
 
                     return@OnNavigationItemSelectedListener true
                 }
 
                 R.id.bottomnav_Settings -> {
+
+                    // supportFragmentManager.beginTransaction()
+                    //     .replace(R.id.fragment_container, fragmentSettings).commit()
                     return@OnNavigationItemSelectedListener true
                 }
                 else -> false

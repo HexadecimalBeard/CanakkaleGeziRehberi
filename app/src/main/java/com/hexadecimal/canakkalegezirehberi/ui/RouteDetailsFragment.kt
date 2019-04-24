@@ -1,10 +1,11 @@
-package com.hexadecimal.canakkalegezirehberi
+package com.hexadecimal.canakkalegezirehberi.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.hexadecimal.canakkalegezirehberi.R
 
 
 // Created by Melih KOK
@@ -24,7 +25,8 @@ class RouteDetailsFragment : Fragment() {
     // we use the companion object to access this class's members with only the class name
     // it is like static in java, companion object is a singleton
     companion object {
-        fun newInstance(): RouteDetailsFragment = RouteDetailsFragment()
+        fun newInstance(): RouteDetailsFragment =
+            RouteDetailsFragment()
     }
 
     // to use this fragment in another class use implement code given below

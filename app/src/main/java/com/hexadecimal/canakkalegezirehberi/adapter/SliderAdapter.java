@@ -1,4 +1,4 @@
-package com.hexadecimal.canakkalegezirehberi;
+package com.hexadecimal.canakkalegezirehberi.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;

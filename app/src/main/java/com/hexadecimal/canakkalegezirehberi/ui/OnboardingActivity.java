@@ -1,4 +1,4 @@
-package com.hexadecimal.canakkalegezirehberi;
+package com.hexadecimal.canakkalegezirehberi.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.hexadecimal.canakkalegezirehberi.R;
+import com.hexadecimal.canakkalegezirehberi.adapter.SliderAdapter;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;

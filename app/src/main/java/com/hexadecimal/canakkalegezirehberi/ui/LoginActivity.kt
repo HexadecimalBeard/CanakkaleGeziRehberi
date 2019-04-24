@@ -1,4 +1,4 @@
-package com.hexadecimal.canakkalegezirehberi
+package com.hexadecimal.canakkalegezirehberi.ui
 
 import android.content.Context
 import android.content.Intent
@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.hexadecimal.canakkalegezirehberi.R
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
