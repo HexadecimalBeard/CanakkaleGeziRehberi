@@ -22,4 +22,5 @@
     <string name="yeniRotaOlustur_activityMyroutes">Yeni Rota Oluştur</string>
     <string name="createNewRoute_DescText">Sahip olduğun anıtları aşağıdan ekleyebilirsin. Daha \n fazlası için Anıtlar kısmını ziyaret et.</string>
     <string name="yeniRotaOlustur_fragment_newRoute">Yeni Rota Oluştur</string>
+    <string name="hava_durumu">Hava Durumu</string>
 </resources>
