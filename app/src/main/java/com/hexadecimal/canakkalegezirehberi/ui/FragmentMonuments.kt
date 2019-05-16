@@ -1,26 +1,23 @@
 package com.hexadecimal.canakkalegezirehberi.ui
 
 
+import android.annotation.SuppressLint
 import android.app.Dialog
-import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.Window
+import android.view.*
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import com.hexadecimal.canakkalegezirehberi.R
 import com.hexadecimal.canakkalegezirehberi.RoomDB.MonumentsDB
 import com.hexadecimal.canakkalegezirehberi.adapter.MonumentsAdapter
-import com.hexadecimal.canakkalegezirehberi.adapter.MonumentsListViewHolder
 import com.hexadecimal.canakkalegezirehberi.dao.MonumentsDao
 import com.hexadecimal.canakkalegezirehberi.model.MonumentsEntity
 import kotlinx.android.synthetic.main.fragment_monuments.*
@@ -29,14 +26,20 @@ import kotlin.concurrent.thread
 
 class FragmentMonuments : Fragment() {
 
+    private var mediaPlayer: MediaPlayer? = null
+
+    // ses dosyasını storage dan almak icin kullanacagim
+    private val storage: FirebaseStorage by lazy { FirebaseStorage.getInstance() }
+
     private val monumentsDB: MonumentsDB? by lazy { MonumentsDB.getInstance(context!!) }
 
     // query leri calistiracagimiz dao ya eristik
     private val monumentsDao: MonumentsDao? by lazy { monumentsDB?.getMonumentsDao() }
 
-    private val firestoreDb: FirebaseFirestore by lazy {
-        FirebaseFirestore.getInstance()
-    }
+    private val firestoreDb: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
+
+    private val storageRef = storage.reference
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -71,8 +74,10 @@ class FragmentMonuments : Fragment() {
             })
 
     }
+
     // to get long description of monument from firestore
-    private fun getFirestoreData(anitItem: MonumentsEntity){
+    @SuppressLint("ClickableViewAccessibility")
+    private fun getFirestoreData(anitItem: MonumentsEntity) {
 
         val dialog = Dialog(activity!!)
 
@@ -83,12 +88,22 @@ class FragmentMonuments : Fragment() {
         detailAnitResmi.setBackgroundResource(anitItem.anitResim)
         val detailAnitIsmi = dialog.findViewById<TextView>(R.id.anit_Ismı_Monuments_DetailTxt)
         detailAnitIsmi.text = anitItem.anitIsmi
-        val detailAnitAciklama = dialog.findViewById<TextView>(R.id.anit_Aciklama_Monuments_DetailTxt)
+        val detailAnitAciklama =
+            dialog.findViewById<TextView>(R.id.anit_Aciklama_Monuments_DetailTxt)
 
         // TODO hava durumu bilgisini almak icin gerekenleri yaz
 
         val detailRecordPlayButton = dialog.findViewById<ImageButton>(R.id.record_Play_ButtonImg)
-        detailRecordPlayButton.setBackgroundResource(R.drawable.record_play)
+
+        mediaPlayer = MediaPlayer.create(activity, R.raw.canakkaleses)
+
+        detailRecordPlayButton.setOnTouchListener { _, motionEvent ->
+
+            // basili tutuldugunda media dosyası oynatiliyor
+            handleTouchEvent(motionEvent)
+            true
+        }
+
 
         // dialog will close when touch outside of it
         dialog.setCanceledOnTouchOutside(true)
@@ -107,8 +122,8 @@ class FragmentMonuments : Fragment() {
                     // TODO document yoksa yapilacak
                 }
             }
-            .addOnFailureListener { exception ->
-                Toast.makeText(activity,"Anıt Bilgisi Alınamadı!",Toast.LENGTH_SHORT).show()
+            .addOnFailureListener {
+                Toast.makeText(activity, "Anıt Bilgisi Alınamadı!", Toast.LENGTH_SHORT).show()
             }
 
         dialog.show()
@@ -119,7 +134,7 @@ class FragmentMonuments : Fragment() {
         fun newInstance() = FragmentMonuments()
     }
 
-    fun createRoomDatabase(){
+    fun createRoomDatabase() {
         val canakkaleSehitligi = MonumentsEntity(
             1,
             "Çanakkale Şehitliği ve Şehitler Abidesi",
@@ -154,12 +169,27 @@ class FragmentMonuments : Fragment() {
             26.38006
         )
 
-        thread (start = true) {
+        thread(start = true) {
             monumentsDao?.addNewMonument(canakkaleSehitligi)
             monumentsDao?.addNewMonument(troyaAntikKenti)
             monumentsDao?.addNewMonument(namazgahTabyasi)
         }
     }
+
+    private fun handleTouchEvent(event: MotionEvent) {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+                mediaPlayer?.start()
+            }
+            MotionEvent.ACTION_CANCEL, MotionEvent.ACTION_UP -> {
+                mediaPlayer?.pause()
+                mediaPlayer?.seekTo(0)
+
+            }
+            else -> {
+
+            }
+        }
+    }
+
 }
-
-
