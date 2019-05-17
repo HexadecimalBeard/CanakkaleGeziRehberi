@@ -2,6 +2,7 @@ package com.hexadecimal.canakkalegezirehberi.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -23,12 +24,14 @@ class MonumentsListViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
     private val anitIsmi: TextView
     private val anitAciklama: TextView
     private val anitKonum: TextView
+    private val anitCheckBox: CheckBox
 
     init {
         anitResim = itemView.findViewById(R.id.monument_ImageView)
         anitIsmi = itemView.findViewById(R.id.monument_TitleTxt)
         anitAciklama = itemView.findViewById(R.id.monument_DescriptionTxt)
         anitKonum = itemView.findViewById(R.id.monument_LocationTxt)
+        anitCheckBox = itemView.findViewById(R.id.monumentList_CheckBox)
 
     }
 
@@ -47,4 +50,5 @@ class MonumentsListViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
             onItemClickListener(monumentsEntity)
         }
     }
+
 }

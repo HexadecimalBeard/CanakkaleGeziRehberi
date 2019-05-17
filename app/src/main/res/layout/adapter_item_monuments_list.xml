@@ -5,7 +5,8 @@
     android:background="@drawable/custom_rectangle_design"
     android:orientation="horizontal"
     android:elevation="5dp"
-    android:layout_margin="4dp">
+    android:layout_margin="8dp"
+    android:padding="8dp">
 
     <ImageView
         android:id="@+id/monument_ImageView"
@@ -21,9 +22,9 @@
 
         <TextView
             android:id="@+id/monument_TitleTxt"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
             android:minWidth="50dp"
             android:minHeight="20dp"
@@ -31,9 +32,9 @@
 
         <TextView
             android:id="@+id/monument_LocationTxt"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:minWidth="50dp"
             android:minHeight="20dp"
@@ -41,9 +42,9 @@
 
         <TextView
             android:id="@+id/monument_DescriptionTxt"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:minWidth="50dp"
             android:minHeight="20dp"
@@ -51,5 +52,12 @@
 
 
     </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/monumentList_CheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"/>
 
 </LinearLayout>

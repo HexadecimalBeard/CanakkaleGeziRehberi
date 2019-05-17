@@ -2,17 +2,18 @@ package com.hexadecimal.canakkalegezirehberi.ui
 
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.Dialog
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.*
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.hexadecimal.canakkalegezirehberi.R
@@ -20,6 +21,7 @@ import com.hexadecimal.canakkalegezirehberi.RoomDB.MonumentsDB
 import com.hexadecimal.canakkalegezirehberi.adapter.MonumentsAdapter
 import com.hexadecimal.canakkalegezirehberi.dao.MonumentsDao
 import com.hexadecimal.canakkalegezirehberi.model.MonumentsEntity
+import kotlinx.android.synthetic.main.adapter_item_monuments_list.*
 import kotlinx.android.synthetic.main.fragment_monuments.*
 import kotlin.concurrent.thread
 
@@ -28,8 +30,9 @@ class FragmentMonuments : Fragment() {
 
     private var mediaPlayer: MediaPlayer? = null
 
+    // TODO storage baglantisini burada yap
     // ses dosyasını storage dan almak icin kullanacagim
-    private val storage: FirebaseStorage by lazy { FirebaseStorage.getInstance() }
+    //private val storage: FirebaseStorage by lazy { FirebaseStorage.getInstance() }
 
     private val monumentsDB: MonumentsDB? by lazy { MonumentsDB.getInstance(context!!) }
 
@@ -38,7 +41,7 @@ class FragmentMonuments : Fragment() {
 
     private val firestoreDb: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
 
-    private val storageRef = storage.reference
+    //private val bottomDialog: BottomSheetDialogFragment by lazy { BottomDialogFragment.newInstance() }
 
 
     override fun onCreateView(
@@ -47,6 +50,7 @@ class FragmentMonuments : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_monuments, container, false)
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -72,6 +76,14 @@ class FragmentMonuments : Fragment() {
                     newMonumentsList
                 )
             })
+
+
+
+        // to create bottom sheet dialog
+        denemeCartButton.setOnClickListener {
+            val menuFragment = BottomCartMenuFragment()
+            menuFragment.show(activity!!.supportFragmentManager,"")
+        }
 
     }
 

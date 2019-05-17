@@ -10,13 +10,15 @@
         android:id="@+id/toolbar2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:elevation="4dp"
         android:layout_marginBottom="4dp"
+        android:elevation="4dp"
         android:minHeight="?attr/actionBarSize"
         app:layout_constraintBottom_toTopOf="@+id/guideline15"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <ImageView
             android:layout_width="30dp"
@@ -38,6 +40,17 @@
             app:queryBackground="@android:color/transparent"
             app:queryHint="Ara"
             app:searchIcon="@drawable/searchview_icon" />
+
+        <ImageButton
+            android:id="@+id/denemeCartButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/ic_shopping_cart_black"
+            android:minWidth="30dp"
+            android:minHeight="30dp" />
 
     </androidx.appcompat.widget.Toolbar>
 

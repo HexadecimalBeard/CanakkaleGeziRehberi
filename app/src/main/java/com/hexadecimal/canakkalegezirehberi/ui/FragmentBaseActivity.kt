@@ -8,8 +8,6 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.hexadecimal.canakkalegezirehberi.R
-import com.hexadecimal.canakkalegezirehberi.RoomDB.MonumentsDB
-import com.hexadecimal.canakkalegezirehberi.dao.MonumentsDao
 
 class FragmentBaseActivity : AppCompatActivity() {
 
@@ -23,8 +21,6 @@ class FragmentBaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_base_main)
-
-//        createDatabase()
 
 
         val newRouteFragment =
