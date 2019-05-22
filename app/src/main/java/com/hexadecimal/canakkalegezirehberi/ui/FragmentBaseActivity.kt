@@ -14,6 +14,8 @@ class FragmentBaseActivity : AppCompatActivity() {
     private val myRoutesFragment by lazy { FragmentMyRoutes.newInstance() }
     private val fragmentMonuments by lazy { FragmentMonuments.newInstance() }
     private val routeDetailsFragment by lazy { RouteDetailsFragment.newInstance() }
+    private val fragmentSavasHakkinda by lazy { FragmentSavasHakkinda.newInstance() }
+    private val fragmentAppSettings by lazy { FragmentAppSettings.newInstance() }
 
     var fbAuth = FirebaseAuth.getInstance()
 
@@ -34,10 +36,6 @@ class FragmentBaseActivity : AppCompatActivity() {
 
     }
 
-//    fun createDatabase(){
-//
-//    }
-
     private val onNavigationBarItemSelectedListener =
         BottomNavigationView.OnNavigationItemSelectedListener { item ->
 
@@ -53,8 +51,8 @@ class FragmentBaseActivity : AppCompatActivity() {
 
                 R.id.bottomnav_AboutVictory -> {
 
-                    // supportFragmentManager.beginTransaction()
-                    //     .replace(R.id.fragment_container, aboutVictory).commit()
+                     supportFragmentManager.beginTransaction()
+                         .replace(R.id.fragment_container, fragmentSavasHakkinda).commit()
                     return@OnNavigationItemSelectedListener true
                 }
 
@@ -68,8 +66,8 @@ class FragmentBaseActivity : AppCompatActivity() {
 
                 R.id.bottomnav_Settings -> {
 
-                    // supportFragmentManager.beginTransaction()
-                    //     .replace(R.id.fragment_container, fragmentSettings).commit()
+                     supportFragmentManager.beginTransaction()
+                         .replace(R.id.fragment_container, fragmentAppSettings).commit()
                     return@OnNavigationItemSelectedListener true
                 }
                 else -> false

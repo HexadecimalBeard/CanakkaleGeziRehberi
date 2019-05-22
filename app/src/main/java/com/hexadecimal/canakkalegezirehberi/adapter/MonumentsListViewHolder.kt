@@ -25,14 +25,12 @@ class MonumentsListViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
     private val anitIsmi: TextView
     private val anitAciklama: TextView
     private val anitKonum: TextView
-    private val anitCheckBox: CheckBox
 
     init {
         anitResim = itemView.findViewById(R.id.monument_ImageView)
         anitIsmi = itemView.findViewById(R.id.monument_TitleTxt)
         anitAciklama = itemView.findViewById(R.id.monument_DescriptionTxt)
         anitKonum = itemView.findViewById(R.id.monument_LocationTxt)
-        anitCheckBox = itemView.findViewById(R.id.monumentList_CheckBox)
 
     }
 

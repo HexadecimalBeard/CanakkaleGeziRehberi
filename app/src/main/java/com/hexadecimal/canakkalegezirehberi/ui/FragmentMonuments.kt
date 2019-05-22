@@ -24,6 +24,7 @@ import com.hexadecimal.canakkalegezirehberi.model.MonumentsEntity
 import kotlinx.android.synthetic.main.bottom_dialog_cart.*
 import kotlinx.android.synthetic.main.fragment_monuments.*
 import kotlinx.android.synthetic.main.monuments_detail_custom_dialog.*
+import org.w3c.dom.Text
 import java.io.Serializable
 import kotlin.concurrent.thread
 
@@ -49,7 +50,8 @@ class FragmentMonuments : Fragment() {
 
     private var selectedMonumentsList = ArrayList<Long>()
 
-    private var modalBottomSheet: BottomCartMenuFragment? = null
+    private var monumentsSelected = HashMap<String, Any>()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -105,7 +107,7 @@ class FragmentMonuments : Fragment() {
         val detailAnitResmi = dialog.findViewById<ImageView>(R.id.anit_Resim_Monuments_DetImg)
         detailAnitResmi.setBackgroundResource(anitItem.anitResim)
         val detailAnitIsmi = dialog.findViewById<TextView>(R.id.anit_Ismı_Monuments_DetailTxt)
-        detailAnitIsmi.text = anitItem.anitIsmi
+        detailAnitIsmi?.text = anitItem.anitIsmi
         val detailAnitAciklama =
             dialog.findViewById<TextView>(R.id.anit_Aciklama_Monuments_DetailTxt)
 
@@ -117,13 +119,17 @@ class FragmentMonuments : Fragment() {
 
         detailAddMonument.setOnClickListener {
 
-            modalBottomSheet!!.selectedMonumentsList
-
             if(selectedMonumentsList.contains(anitItem._id)){
                 Toast.makeText(activity,"Anit eklenmis",Toast.LENGTH_SHORT).show()
             }else {
-                selectedMonumentsList.add(anitItem._id)
-                Log.e("Monuments List","${selectedMonumentsList.size}")
+                //selectedMonumentsList.add(anitItem._id)
+
+                monumentsSelected["anitId"] = "${anitItem._id}"
+
+                firestoreDb.collection("Kullanıcılar").document("${firebaseAuth.uid}").set(monumentsSelected)
+
+                Log.e("Monuments List","${monumentsSelected.size}")
+
             }
         }
 
@@ -210,6 +216,13 @@ class FragmentMonuments : Fragment() {
             monumentsDao?.addNewMonument(troyaAntikKenti)
             monumentsDao?.addNewMonument(namazgahTabyasi)
         }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+
+        var monumentIdsList = HashMap<String, ArrayList<Long>>()
+        Log.e("Monument Ids list", "$monumentIdsList")
     }
 
 }

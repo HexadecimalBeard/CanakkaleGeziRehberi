@@ -23,4 +23,6 @@
     <string name="createNewRoute_DescText">Sahip olduğun anıtları aşağıdan ekleyebilirsin. Daha \n fazlası için Anıtlar kısmını ziyaret et.</string>
     <string name="yeniRotaOlustur_fragment_newRoute">Yeni Rota Oluştur</string>
     <string name="hava_durumu">Hava Durumu</string>
+
+    <string name="savas_hakkinda_desc">Çanakkale Savaşı veya Çanakkale Muharebeleri, I.Dünya Savaşı sırasında 1915–1916 yılları arasında Gelibolu Yarımadası’nda Osmnalı İmparatorluğu ile İtilaf Devletleri arasında yapılan deniz ve kara muharebeleridir. İtilaf Devletleri; Osmanlı İmparatorluğu\'nun başkenti İstanbul\’u alarak İstanbul ve Çanakkale boğazlarının kontrolünü ele geçirmek, Rusya\’yla güvenli bir erzak tedarik ve askeri ikmal yolu açmak, başkent İstanbul\′u zapt etmek suretiyle Almanya\′nın müttefiklerinden birini savaş dışı bırakarak İttifak Devletlerini zayıflatmak amaçları ile ilk hedef olarak Çanakkale Boğazı\'nı seçmişlerdir. Ancak saldırıları başarısız olmuş ve geri çekilmek zorunda kalmışlardır. Kara ve deniz savaşı sonucunda iki taraf da çok ağır kayıplar vermiştir.</string>
 </resources>

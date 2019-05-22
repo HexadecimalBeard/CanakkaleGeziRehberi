@@ -57,8 +57,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/monument_Recycler_View"
         android:layout_width="408dp"
-        android:layout_height="648dp"
-        android:layout_marginTop="48dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline16"
         app:layout_constraintEnd_toEndOf="parent"
