@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.hexadecimal.canakkalegezirehberi.R
+import kotlinx.android.synthetic.main.bottom_dialog_cart.*
 
 
 // Created by Melih KOK
@@ -14,11 +15,33 @@ import com.hexadecimal.canakkalegezirehberi.R
 
 class BottomCartMenuFragment : BottomDialogFragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    var selectedMonumentsList = ArrayList<Long>()
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
         val view = inflater.inflate(R.layout.bottom_dialog_cart, container)
 
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        sepetSatinAl.setOnClickListener {
+            fragmentManager!!.beginTransaction()
+                .replace(R.id.fragment_container, CreateNewRouteFragment()).commit()
+
+            dialog!!.dismiss()
+        }
+
+    }
+
+    companion object {
+        fun newInstance() = BottomCartMenuFragment()
     }
 
 }

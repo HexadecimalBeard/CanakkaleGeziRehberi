@@ -2,27 +2,29 @@ package com.hexadecimal.canakkalegezirehberi.ui
 
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.Dialog
+import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.os.Parcelable
+import android.util.Log
 import android.view.*
 import android.widget.*
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
 import com.hexadecimal.canakkalegezirehberi.R
 import com.hexadecimal.canakkalegezirehberi.RoomDB.MonumentsDB
 import com.hexadecimal.canakkalegezirehberi.adapter.MonumentsAdapter
 import com.hexadecimal.canakkalegezirehberi.dao.MonumentsDao
 import com.hexadecimal.canakkalegezirehberi.model.MonumentsEntity
-import kotlinx.android.synthetic.main.adapter_item_monuments_list.*
+import kotlinx.android.synthetic.main.bottom_dialog_cart.*
 import kotlinx.android.synthetic.main.fragment_monuments.*
+import kotlinx.android.synthetic.main.monuments_detail_custom_dialog.*
+import java.io.Serializable
 import kotlin.concurrent.thread
 
 
@@ -43,6 +45,11 @@ class FragmentMonuments : Fragment() {
 
     //private val bottomDialog: BottomSheetDialogFragment by lazy { BottomDialogFragment.newInstance() }
 
+    private val firebaseAuth: FirebaseAuth by lazy { FirebaseAuth.getInstance() }
+
+    private var selectedMonumentsList = ArrayList<Long>()
+
+    private var modalBottomSheet: BottomCartMenuFragment? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,6 +62,7 @@ class FragmentMonuments : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         createRoomDatabase()
 
@@ -76,8 +84,6 @@ class FragmentMonuments : Fragment() {
                     newMonumentsList
                 )
             })
-
-
 
         // to create bottom sheet dialog
         denemeCartButton.setOnClickListener {
@@ -107,13 +113,31 @@ class FragmentMonuments : Fragment() {
 
         val detailRecordPlayButton = dialog.findViewById<ImageButton>(R.id.record_Play_ButtonImg)
 
-        mediaPlayer = MediaPlayer.create(activity, R.raw.canakkaleses)
+        val detailAddMonument = dialog.findViewById<ImageButton>(R.id.monument_Detail_SepeteEkle)
 
-        detailRecordPlayButton.setOnTouchListener { _, motionEvent ->
+        detailAddMonument.setOnClickListener {
 
-            // basili tutuldugunda media dosyası oynatiliyor
-            handleTouchEvent(motionEvent)
-            true
+            modalBottomSheet!!.selectedMonumentsList
+
+            if(selectedMonumentsList.contains(anitItem._id)){
+                Toast.makeText(activity,"Anit eklenmis",Toast.LENGTH_SHORT).show()
+            }else {
+                selectedMonumentsList.add(anitItem._id)
+                Log.e("Monuments List","${selectedMonumentsList.size}")
+            }
+        }
+
+
+        mediaPlayer = MediaPlayer.create(context, R.raw.canakkaleses)
+
+        detailRecordPlayButton.setOnClickListener {
+
+            if (mediaPlayer!!.isPlaying){
+                mediaPlayer!!.pause()
+                mediaPlayer!!.seekTo(0)
+            }else{
+                mediaPlayer!!.start()
+            }
         }
 
 
@@ -185,22 +209,6 @@ class FragmentMonuments : Fragment() {
             monumentsDao?.addNewMonument(canakkaleSehitligi)
             monumentsDao?.addNewMonument(troyaAntikKenti)
             monumentsDao?.addNewMonument(namazgahTabyasi)
-        }
-    }
-
-    private fun handleTouchEvent(event: MotionEvent) {
-        when (event.action) {
-            MotionEvent.ACTION_DOWN -> {
-                mediaPlayer?.start()
-            }
-            MotionEvent.ACTION_CANCEL, MotionEvent.ACTION_UP -> {
-                mediaPlayer?.pause()
-                mediaPlayer?.seekTo(0)
-
-            }
-            else -> {
-
-            }
         }
     }
 

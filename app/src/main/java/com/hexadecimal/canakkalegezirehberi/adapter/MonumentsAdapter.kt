@@ -4,7 +4,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.hexadecimal.canakkalegezirehberi.model.MonumentsEntity
 
-
 // Created by Melih KOK
 // kokmelih@gmail.com
 // 2019-05-01 - 16:07
@@ -31,6 +30,10 @@ class MonumentsAdapter(
     // icinde çizilen pozisyondaki item row un degeri var
     override fun onBindViewHolder(holder: MonumentsListViewHolder, position: Int) {
 
+        // closed the recyclable feature of recyclerView because of checkboxes
+        // change here!!!
+        holder.setIsRecyclable(false)
+
         monumentsList?.let {
             holder.bind(it[position], onItemClickListener)
         }
@@ -40,5 +43,4 @@ class MonumentsAdapter(
         this.monumentsList = monumentsList
         notifyDataSetChanged()
     }
-
 }

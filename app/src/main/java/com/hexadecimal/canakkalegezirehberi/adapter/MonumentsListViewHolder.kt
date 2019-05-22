@@ -15,6 +15,7 @@ import com.hexadecimal.canakkalegezirehberi.model.MonumentsEntity
 // kokmelih@gmail.com
 // 2019-05-01 - 15:56
 
+
 class MonumentsListViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
     LayoutInflater.from(parent.context)
         .inflate(R.layout.adapter_item_monuments_list, parent, false)
@@ -48,6 +49,9 @@ class MonumentsListViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
         itemView.setOnClickListener {
 
             onItemClickListener(monumentsEntity)
+
+
+            // Todo; do the checkbox process in here
         }
     }
 

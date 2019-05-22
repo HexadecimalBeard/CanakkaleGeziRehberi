@@ -1,31 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-            android:id="@+id/bottomnav_Myroutes"
-            android:icon="@mipmap/bottomnav_routesblack"
-            android:enabled="true"
-            app:showAsAction="withText"
-            android:title="Rotalarım"/>
+        android:id="@+id/bottomnav_Myroutes"
+        android:enabled="true"
+
+        android:icon="@mipmap/bottomnav_routesblack"
+        android:title="Rotalarım"
+        app:showAsAction="withText" />
 
     <item
         android:id="@+id/bottomnav_AboutVictory"
-        android:icon="@mipmap/bottomnav_savashakwhite"
         android:enabled="true"
-        app:showAsAction="withText"
-        android:title="Savaş Hakkında"/>
+        android:icon="@mipmap/bottomnav_savashakwhite"
+        android:title="Savaş Hakkında"
+        app:showAsAction="withText" />
 
     <item
         android:id="@+id/bottomnav_Monuments"
-        android:icon="@mipmap/bottomnav_monumentswhite"
         android:enabled="true"
-        app:showAsAction="withText"
-        android:title="Anıtlar"/>
+        android:icon="@mipmap/bottomnav_monumentswhite"
+        android:title="Anıtlar"
+        app:showAsAction="withText" />
     <item
         android:id="@+id/bottomnav_Settings"
-        android:icon="@mipmap/settingsicon"
         android:enabled="true"
-        app:showAsAction="withText"
-        android:title="Ayarlar"/>
+        android:icon="@mipmap/settingsicon"
+        android:title="Ayarlar"
+        app:showAsAction="withText" />
 
 </menu>
