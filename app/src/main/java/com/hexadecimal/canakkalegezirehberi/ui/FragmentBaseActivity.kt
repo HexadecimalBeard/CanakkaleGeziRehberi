@@ -83,25 +83,26 @@ class FragmentBaseActivity : AppCompatActivity() {
         transaction.commit()
     }
 
-    // to sign out when you double tab to back button
-    // TODO use this on sign out section, it is functional in here for now!!!
-    private var doubleBackToExitPressedOnce = false
 
-    override fun onBackPressed() {
-        if (doubleBackToExitPressedOnce) {
-            super.onBackPressed()
-            fbAuth.signOut()
-            //val intent = Intent(this, LoginActivity::class.java)
-            //startActivity(intent)
-        }
-        this.doubleBackToExitPressedOnce = true
-        Toast.makeText(
-            this,
-            "Çıkış yapmak için iki kere geri tuşuna basmalısın!",
-            Toast.LENGTH_SHORT
-        ).show()
-        Handler().postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
-    }
-
+//    // to sign out when you double tab to back button
+//    // TODO use this on sign out section, it is functional in here for now!!!
+//    private var doubleBackToExitPressedOnce = false
+//
+//    override fun onBackPressed() {
+//        if (doubleBackToExitPressedOnce) {
+//            super.onBackPressed()
+//            fbAuth.signOut()
+//            //val intent = Intent(this, LoginActivity::class.java)
+//            //startActivity(intent)
+//        }
+//        this.doubleBackToExitPressedOnce = true
+//        Toast.makeText(
+//            this,
+//            "Çıkış yapmak için iki kere geri tuşuna basmalısın!",
+//            Toast.LENGTH_SHORT
+//        ).show()
+//        Handler().postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
+//    }
+//
 
 }

@@ -24,5 +24,24 @@
     <string name="yeniRotaOlustur_fragment_newRoute">Yeni Rota Oluştur</string>
     <string name="hava_durumu">Hava Durumu</string>
 
-    <string name="savas_hakkinda_desc">Çanakkale Savaşı veya Çanakkale Muharebeleri, I.Dünya Savaşı sırasında 1915–1916 yılları arasında Gelibolu Yarımadası’nda Osmnalı İmparatorluğu ile İtilaf Devletleri arasında yapılan deniz ve kara muharebeleridir. İtilaf Devletleri; Osmanlı İmparatorluğu\'nun başkenti İstanbul\’u alarak İstanbul ve Çanakkale boğazlarının kontrolünü ele geçirmek, Rusya\’yla güvenli bir erzak tedarik ve askeri ikmal yolu açmak, başkent İstanbul\′u zapt etmek suretiyle Almanya\′nın müttefiklerinden birini savaş dışı bırakarak İttifak Devletlerini zayıflatmak amaçları ile ilk hedef olarak Çanakkale Boğazı\'nı seçmişlerdir. Ancak saldırıları başarısız olmuş ve geri çekilmek zorunda kalmışlardır. Kara ve deniz savaşı sonucunda iki taraf da çok ağır kayıplar vermiştir.</string>
+    <string name="savas_hakkinda_desc">Çanakkale Savaşı veya Çanakkale Muharebeleri, I.Dünya Savaşı
+         sırasında 1915–1916 yılları arasında Gelibolu Yarımadası’nda Osmnalı İmparatorluğu ile
+        İtilaf Devletleri arasında yapılan deniz ve kara muharebeleridir. İtilaf Devletleri;
+        Osmanlı İmparatorluğu\'nun başkenti İstanbul\’u alarak İstanbul ve Çanakkale boğazlarının
+        kontrolünü ele geçirmek, Rusya\’yla güvenli bir erzak tedarik ve askeri ikmal yolu açmak,
+        başkent İstanbul\′u zapt etmek suretiyle Almanya\′nın müttefiklerinden birini savaş dışı
+        bırakarak İttifak Devletlerini zayıflatmak amaçları ile ilk hedef olarak Çanakkale
+        Boğazı\'nı seçmişlerdir. Ancak saldırıları başarısız olmuş ve geri çekilmek zorunda
+        kalmışlardır. Kara ve deniz savaşı sonucunda iki taraf da çok ağır kayıplar vermiştir.
+    Osmanlı İmparatorluğu, Almanya\'nın Rusya\'ya savaş ilan ettiği 1 Ağustos 1914\'ün hemen
+        ertesi günü, Almanya ile bir ittifak antlaşması imzalamıştır. Bu antlaşma,
+        imparatorluğun eninde sonunda Almanya\'nın ana gücünü oluşturduğu 
+        İttifak Devletleri safında fiilen savaşa gireceği anlamına gelmektedir. Enver Paşa,
+        fiilen savaşa girmeyi, seferberliğin tamamlanmamış olması ve Çanakkale Boğazı savunmasının
+        tamamlanmaması gibi gerekçelerle ertelemeye çalışmıştır. Ancak Almanya, bir an önce savaşa
+        fiilen girilmesi için baskılarını sürdürmüştür. Bu baskılar, Akdeniz\'de Britanya donanması
+        önünden çekilen Goeben ve Breslau savaş gemilerinin İstanbul\'a gelmesiyle bir oldubittiye
+        getirilmişti. Daha sonra Osmanlı Donanması\'na bağlı bir grup gemiyle Karadeniz\'e açılan
+        bu gemiler 27 Ekim 1914 tarihinde Rus limanlarını bombalayınca Rusya, Osmanlı
+        İmparatorluğu\'na savaş ilan etmiştir.</string>
 </resources>

@@ -43,15 +43,26 @@ class BottomCartMenuFragment : BottomDialogFragment() {
             dialog!!.dismiss()
         }
 
-        firestoreDb.collection("Kullanıcılar")
-            .document("${firebaseAuth.uid}")
-            .get().addOnSuccessListener {document ->
-                if (document != null) {
-                    fiyat = document.data?.get("anitId").toString()
+        val docRef = firestoreDb.collection("Kullanıcılar").document(firebaseAuth.uid.toString())
 
-                    fiyatToplam?.text = (fiyat.toLong() * 4).toString()
-                }
+
+        docRef.get().addOnSuccessListener { document ->
+            if(document != null){
+
+                fiyat = document.data?.size.toString()
+                fiyatToplam?.text = (fiyat.toLong() * 4).toString()
             }
+        }
+
+       // firestoreDb.collection("Kullanıcılar")
+       //     .document("${firebaseAuth.uid}")
+       //     .get().addOnSuccessListener {document ->
+       //         if (document != null) {
+       //             fiyat = document.data?.size.toString()
+
+       //             fiyatToplam?.text = (fiyat.toLong() * 4).toString()
+       //         }
+       //     }
 
     }
 

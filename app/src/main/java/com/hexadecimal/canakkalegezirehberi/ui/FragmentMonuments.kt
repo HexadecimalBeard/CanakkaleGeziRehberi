@@ -3,39 +3,34 @@ package com.hexadecimal.canakkalegezirehberi.ui
 
 import android.annotation.SuppressLint
 import android.app.Dialog
-import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
-import android.os.Parcelable
-import android.util.Log
-import android.view.*
-import android.widget.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.Window
+import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.hexadecimal.canakkalegezirehberi.R
 import com.hexadecimal.canakkalegezirehberi.RoomDB.MonumentsDB
 import com.hexadecimal.canakkalegezirehberi.adapter.MonumentsAdapter
 import com.hexadecimal.canakkalegezirehberi.dao.MonumentsDao
 import com.hexadecimal.canakkalegezirehberi.model.MonumentsEntity
-import kotlinx.android.synthetic.main.bottom_dialog_cart.*
 import kotlinx.android.synthetic.main.fragment_monuments.*
-import kotlinx.android.synthetic.main.monuments_detail_custom_dialog.*
-import org.w3c.dom.Text
-import java.io.Serializable
 import kotlin.concurrent.thread
 
 
 class FragmentMonuments : Fragment() {
 
     private var mediaPlayer: MediaPlayer? = null
-
-    // TODO storage baglantisini burada yap
-    // ses dosyasını storage dan almak icin kullanacagim
-    //private val storage: FirebaseStorage by lazy { FirebaseStorage.getInstance() }
 
     private val monumentsDB: MonumentsDB? by lazy { MonumentsDB.getInstance(context!!) }
 
@@ -44,14 +39,16 @@ class FragmentMonuments : Fragment() {
 
     private val firestoreDb: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
 
-    //private val bottomDialog: BottomSheetDialogFragment by lazy { BottomDialogFragment.newInstance() }
-
     private val firebaseAuth: FirebaseAuth by lazy { FirebaseAuth.getInstance() }
 
     private var selectedMonumentsList = ArrayList<Long>()
 
     private var monumentsSelected = HashMap<String, Any>()
 
+    //private var selectMon = HashMap<String, Any?>()
+
+    private var docRef =
+        firestoreDb.collection("Kullanıcılar").document(firebaseAuth.uid.toString())
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -90,7 +87,7 @@ class FragmentMonuments : Fragment() {
         // to create bottom sheet dialog
         denemeCartButton.setOnClickListener {
             val menuFragment = BottomCartMenuFragment()
-            menuFragment.show(activity!!.supportFragmentManager,"")
+            menuFragment.show(activity!!.supportFragmentManager, "")
         }
 
     }
@@ -117,20 +114,20 @@ class FragmentMonuments : Fragment() {
 
         val detailAddMonument = dialog.findViewById<ImageButton>(R.id.monument_Detail_SepeteEkle)
 
+        val detailRemoveMonument = dialog.findViewById<ImageButton>(R.id.monument_Detail_SepetCikar)
+
         detailAddMonument.setOnClickListener {
 
-            if(selectedMonumentsList.contains(anitItem._id)){
-                Toast.makeText(activity,"Anit eklenmis",Toast.LENGTH_SHORT).show()
-            }else {
-                //selectedMonumentsList.add(anitItem._id)
+            //val query = firestoreDb.collection("Kullanıcılar")
+            //val firestoreQuery = query.whereArrayContains("anitID",anitItem._id)
 
-                monumentsSelected["anitId"] = "${anitItem._id}"
+            docRef.update("anitID", FieldValue.arrayUnion(anitItem._id))
 
-                firestoreDb.collection("Kullanıcılar").document("${firebaseAuth.uid}").set(monumentsSelected)
+        }
 
-                Log.e("Monuments List","${monumentsSelected.size}")
+        detailRemoveMonument.setOnClickListener {
 
-            }
+            docRef.update("anitID", FieldValue.arrayRemove(anitItem._id))
         }
 
 
@@ -138,10 +135,10 @@ class FragmentMonuments : Fragment() {
 
         detailRecordPlayButton.setOnClickListener {
 
-            if (mediaPlayer!!.isPlaying){
+            if (mediaPlayer!!.isPlaying) {
                 mediaPlayer!!.pause()
                 mediaPlayer!!.seekTo(0)
-            }else{
+            } else {
                 mediaPlayer!!.start()
             }
         }
@@ -218,11 +215,10 @@ class FragmentMonuments : Fragment() {
         }
     }
 
-    override fun onDetach() {
-        super.onDetach()
-
-        var monumentIdsList = HashMap<String, ArrayList<Long>>()
-        Log.e("Monument Ids list", "$monumentIdsList")
-    }
-
 }
+
+// TODO storage baglantisini burada yap
+// ses dosyasını storage dan almak icin kullanacagim
+//private val storage: FirebaseStorage by lazy { FirebaseStorage.getInstance() }
+
+//private val bottomDialog: BottomSheetDialogFragment by lazy { BottomDialogFragment.newInstance() }

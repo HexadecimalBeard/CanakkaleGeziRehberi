@@ -27,6 +27,10 @@ interface MonumentsDao {
     @Query("SELECT * FROM MonumentsTable WHERE _id LIKE :id")
     fun findSingleMonument(id: Long): MonumentsEntity
 
+    @Query("SELECT * FROM MonumentsTable WHERE _id LIKE :id")
+    fun findMultipleMonuments(id: Long): MonumentsEntity
+
     @Query("DELETE FROM MonumentsTable")
     fun deleteAllTable()
+
 }
