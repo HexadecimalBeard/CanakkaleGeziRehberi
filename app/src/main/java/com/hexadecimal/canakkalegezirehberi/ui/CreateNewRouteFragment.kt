@@ -70,7 +70,7 @@ class CreateNewRouteFragment : Fragment() {
                 //monIDs.add(document.get("anitID").toString().toLong())
 
                 monIDs["anitID"] = document.get("anitID")
-                Log.e("dennenenenene", "${monIDs.size}")
+                Log.e("dennenenenene", "${monIDs}")
 
                 //denemeList.addAll(monIDs.values)
 

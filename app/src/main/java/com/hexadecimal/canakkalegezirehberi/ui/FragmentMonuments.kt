@@ -30,6 +30,11 @@ import kotlin.concurrent.thread
 
 class FragmentMonuments : Fragment() {
 
+    // bu sınıf içerisinde aynı fragment yapılarımda kullandığım gibi
+    // firebase veritabanına ve kullanıcı doğrulama öğelerine erişebilmemizi sağlayan
+    // anahtarları by lazy ile tanımladım,
+    // sadece kullanıldığında değer ataması yapılacak bu değişkenlere
+
     private var mediaPlayer: MediaPlayer? = null
 
     private val monumentsDB: MonumentsDB? by lazy { MonumentsDB.getInstance(context!!) }
@@ -47,6 +52,8 @@ class FragmentMonuments : Fragment() {
 
     //private var selectMon = HashMap<String, Any?>()
 
+    // burada veritabanımda bulunan Kullanıcılar ağacının altındaki her kullanıcı için
+    // ayrı şekilde üretilen unique id dökümanlarına erişmek için gereken bağlantıyı kurdum
     private var docRef =
         firestoreDb.collection("Kullanıcılar").document(firebaseAuth.uid.toString())
 
@@ -63,8 +70,16 @@ class FragmentMonuments : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+        // yerelde bulunan veritabanımı oluşturdum
+
         createRoomDatabase()
 
+
+        // burada recyclerview'ı adapter ımızla bağladık ve her bir item e
+        // tıklandığında dialog ekranındaki detaylı anıt verilerini alacağımız veritabanı sorgu
+        // metoduna ulaştım
+        // her tıklandığında yerel veritabanından ve firestoredan aldığı verilerle dialog ekranını
+        // dolduracak
         with(monument_Recycler_View) {
             adapter = MonumentsAdapter { monument ->
 
@@ -73,6 +88,12 @@ class FragmentMonuments : Fragment() {
             layoutManager = LinearLayoutManager(activity!!)
 
         }
+
+        // burada RecyclerView yapısını LiveData ile takip ediyorum
+        // bu da demek ki bu fragment ayakta olduğu sürece RecyclerView de olan
+        // herhangi bir değişiklik bu metodu tetikleyecek ve tekrar tekrar aynı kodları yazmaktan
+        // bizleri kurtaracak
+
 
         // live data ile listeyi takip ediyoruz,
         // herhangi bir degisiklik oldugunda aninda guncellenecek
@@ -83,6 +104,12 @@ class FragmentMonuments : Fragment() {
                     newMonumentsList
                 )
             })
+
+        // bu button ile sepet sekmesine ulaşıyoruz
+        // sepet kısmını Google'ın önerdiği ve google maps de uygulamasında da kullandığı
+        // modal bottom sheet yapısını kullandım
+        //  bu yapı bir dialog gibi davranır fakat daha performanslı ve özelleştirilebilir bir
+        // yapıdadır
 
         // to create bottom sheet dialog
         denemeCartButton.setOnClickListener {
@@ -121,6 +148,10 @@ class FragmentMonuments : Fragment() {
             //val query = firestoreDb.collection("Kullanıcılar")
             //val firestoreQuery = query.whereArrayContains("anitID",anitItem._id)
 
+            // burada kullanıcının yaptığı sepete ekleme ve çıkarma işlemlerini takip ediyorum
+            // firestore yapısı, seçilen anıtın id değeri zaten kullanıcının
+            // spetinde bulunuyorsa tekrar eklenmiyor
+
             docRef.update("anitID", FieldValue.arrayUnion(anitItem._id))
 
         }
@@ -142,6 +173,7 @@ class FragmentMonuments : Fragment() {
                 mediaPlayer!!.start()
             }
         }
+
 
 
         // dialog will close when touch outside of it
@@ -172,6 +204,10 @@ class FragmentMonuments : Fragment() {
     companion object {
         fun newInstance() = FragmentMonuments()
     }
+
+    // yerel veritabanını burada oluşturdum
+    // yerel veritabanımda sadece anıtların basit bilgileri bulunmakta
+    // uzun string gibi maaliyetli yapıları ise uzak veritabnımda tutuyorum
 
     fun createRoomDatabase() {
         val canakkaleSehitligi = MonumentsEntity(

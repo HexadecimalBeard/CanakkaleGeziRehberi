@@ -19,6 +19,9 @@ import kotlinx.android.synthetic.main.fragment_savas_hakkinda.*
 
 class FragmentSavasHakkinda : Fragment() {
 
+    // burada lateinit var olarak tanımladım ki değişkenler oluşturulsun
+    // ama sadece ilk defa kullanılacakları zaman içerisine değer aktarılsın
+    // kaynak kullanımını azaltmak için bu şekilde tanımladım
     private lateinit var player: MediaPlayer
     private lateinit var runnable:Runnable
     private var handler: Handler = Handler()
@@ -38,7 +41,15 @@ class FragmentSavasHakkinda : Fragment() {
 
         savas_Detayı_Txt.movementMethod = ScrollingMovementMethod()
 
+        // kullanılacak ses dosyasını oluşturdum
+
         player = MediaPlayer.create(context,R.raw.canakkaleses)
+
+        // ses dosyası halihazırda çalıyorsa button durdurma görevi üstleniyor
+        // çalmıyorsa başlatma görevi üstleniyor
+
+        // ayrıca initializeSeekBar metodu kullandım ki kullanıcı ses dosyasını dinlerken
+        // yanda bulunan bardan istediği saniyeye geçebilsin
 
         savas_Hakk_Record.setOnClickListener {
             if (player.isPlaying) {
@@ -65,6 +76,11 @@ class FragmentSavasHakkinda : Fragment() {
         }
     }
 
+    // fragment sınıfları içinde companion object yapısı kullandım
+    // bu yapı javadaki singleton yapısına denk geliyor
+    // gene kaynak kullanımını azaltmak için eğer fragment bir kere çizdirilmişse
+    // tekrar oluşturulmamasını sağlıyorum
+
     // we use the companion object to access this class's members with only the class name
     // it is like static in java, companion object is a singleton
     companion object {
@@ -81,13 +97,19 @@ class FragmentSavasHakkinda : Fragment() {
         handler.postDelayed(runnable, 1000)
     }
 
+    // burada mediaplayer sınıfından türettiğim bir extension fonksiyonum var
+    // normalde geliştirici platformunun yazdığı kod sınıfları içerisine kod yazılmasına
+    // izin verilmez sadece okunabilir formattadır
+    // bu yapı sayesinde bu sınıflar içinde tanımlı bir fonksiyon gibi davranan kendi
+    // fonksiyonlarımızı yazabiliyoruz
+
     val MediaPlayer.seconds:Int
         get() {
             return this.duration / 1000
         }
 
 
-    // Extension property to get media player current position in seconds
+    // Extension function to get media player current position in seconds
     val MediaPlayer.currentSeconds:Int
         get() {
             return this.currentPosition/1000

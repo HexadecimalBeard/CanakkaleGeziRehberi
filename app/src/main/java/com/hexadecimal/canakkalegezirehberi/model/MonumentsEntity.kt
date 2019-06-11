@@ -9,6 +9,10 @@ import androidx.room.PrimaryKey
 // kokmelih@gmail.com
 // 2019-04-30 - 11:34
 
+
+// RoomDB nin diğer bir bileşeni ise entity yani data sınıflarımız
+// burada her bir anıt için eklenecek verilerin hangi tipte ve isimde olacağını belirliyoruz
+
 @Entity(tableName = "MonumentsTable")
 data class MonumentsEntity(
 

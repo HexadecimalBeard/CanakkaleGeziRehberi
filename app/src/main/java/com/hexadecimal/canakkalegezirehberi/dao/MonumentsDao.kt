@@ -9,6 +9,10 @@ import com.hexadecimal.canakkalegezirehberi.model.MonumentsEntity
 // kokmelih@gmail.com
 // 2019-05-01 - 13:11
 
+// Dao sınıfımız veri aktarım nesnelerimizdir
+// bu yapı bir interface olarak tanımlanır ve veritabını işlemlerinde kullanacağım
+// metodları burada tanımladım
+
 @Dao
 interface MonumentsDao {
 

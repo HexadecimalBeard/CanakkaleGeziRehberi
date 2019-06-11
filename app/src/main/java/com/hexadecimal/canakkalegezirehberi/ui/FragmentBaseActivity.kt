@@ -1,15 +1,16 @@
 package com.hexadecimal.canakkalegezirehberi.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.hexadecimal.canakkalegezirehberi.R
 
 class FragmentBaseActivity : AppCompatActivity() {
+
+    // bu değişkenleri by lazy ile tanımlamamın nedeni, bu fragmentlerin sadece
+    // kullanıldıklarında oluşturulmasını için
 
     private val myRoutesFragment by lazy { FragmentMyRoutes.newInstance() }
     private val fragmentMonuments by lazy { FragmentMonuments.newInstance() }
@@ -29,12 +30,20 @@ class FragmentBaseActivity : AppCompatActivity() {
             FragmentMyRoutes.newInstance()
         openFragment(newRouteFragment)
 
+        // uygulamamda sekmeleri göstermek adına bottom navigation view yapısını kullandım
+        // tüm fragmentlere ekranın alt kısmından erişilebilir, bunu tercih etmemin nedeni
+        //  uygulama içerisinde sürekli ulaşılan 3 ile 5 arasında fragment bulunduğunda
+        //  bu yapının daha iyi gir kullanıcı deneyimi sağlayacak olması
+
         // declared the bottom navigation bar
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigationBar)
 
         bottomNavigation.setOnNavigationItemSelectedListener(onNavigationBarItemSelectedListener)
 
     }
+
+    // kullanıcı fragment'lerden birini seçtiğinde buradaki when yapısı çalışıyor
+    // ve seçilen fragment'in ID değerine göre o fragment'i oluşturuyor
 
     private val onNavigationBarItemSelectedListener =
         BottomNavigationView.OnNavigationItemSelectedListener { item ->
@@ -51,8 +60,8 @@ class FragmentBaseActivity : AppCompatActivity() {
 
                 R.id.bottomnav_AboutVictory -> {
 
-                     supportFragmentManager.beginTransaction()
-                         .replace(R.id.fragment_container, fragmentSavasHakkinda).commit()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, fragmentSavasHakkinda).commit()
                     return@OnNavigationItemSelectedListener true
                 }
 
@@ -66,13 +75,14 @@ class FragmentBaseActivity : AppCompatActivity() {
 
                 R.id.bottomnav_Settings -> {
 
-                     supportFragmentManager.beginTransaction()
-                         .replace(R.id.fragment_container, fragmentAppSettings).commit()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, fragmentAppSettings).commit()
                     return@OnNavigationItemSelectedListener true
                 }
                 else -> false
             }
         }
+
 
     private fun openFragment(fragment: Fragment) {
 

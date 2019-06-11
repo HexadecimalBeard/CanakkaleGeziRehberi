@@ -12,6 +12,13 @@ import com.hexadecimal.canakkalegezirehberi.model.MonumentsEntity
 // kokmelih@gmail.com
 // 2019-05-01 - 13:24
 
+// yerel veritabanım için RoomDB yapısını kullandım
+// temelde SQLite üzerinde oluşturulan bir katman gibi davranıyor
+// daha rahat bir geliştirme ortamı sağlıyor bizlere
+// RoomDB üç yapıdan oluşmakta
+// bunlardan biri bu DB yapısı
+// DB yapısı olduğunu sınıf isminin başında kullandığımız @DATABASE anotation ı ile tanımladık
+
 // hangi entity ler kullanilacaksa onu verdik, birden fazla tablon varsa class ismi sonuna
 // virgul koyup diger tabloyu yaratan class ismini ver
 @Database(entities = [MonumentsEntity::class], version = 1)
